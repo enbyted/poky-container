@@ -35,6 +35,11 @@ RUN userdel -r yoctouser && \
         /usr/bin/poky-launch.sh \
         /usr/bin/restrict_groupadd.sh \
         /usr/bin/restrict_useradd.sh && \
+    wget https://packagecloud.io/install/repositories/github/git-lfs/script.rpm.sh -O /tmp/lfs.sh && \
+    chmod +x /tmp/lfs.sh && \
+    /tmp/lfs.sh && \
+    apt-get install git-lfs joe && \
+    sudo -u pokyuser git lfs install && \
     echo "#include /etc/sudoers.usersetup" >> /etc/sudoers
 
 USER usersetup
